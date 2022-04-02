@@ -1,0 +1,24 @@
+##colour_printer
+import numpy as np        
+def colour(s):
+     s=s.split('\n')
+     test_case=s.pop(0)
+     test_case=int(test_case)
+     answer=[]
+     for i in range(test_case):
+         printer=[]
+         for j in range(3):
+             n=s.pop(0)
+             n=n.split(' ')
+             n=[int(x) for x in n]
+             printer.append(n)
+         printer=np.array(printer)
+         m=list(np.amax(printer,axis=0))
+         answer.append(m)
+     for i in range(test_case):
+         if 0 not in answer[i]:
+             print('Case #'+str(i)+': '+str(' '.join(answer[m]))
+        else:
+            print('IMPOSSIBLE')
+     
+      
