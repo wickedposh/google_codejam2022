@@ -1,0 +1,67 @@
+##d100000 problem
+def straight(s):
+    s=s.split('\n')
+    test_case=s.pop(0)
+    test_case=int(test_case)
+    answer=[]
+    for i in range(test_case):
+        number=s.pop(0)
+        number=int(number)
+        line=s.pop(0)
+        line=line.split(' ')
+        if len(line)!=number:
+            return False
+        numbers = [ int(x) for x in line ]
+        numbers.sort()
+        for j in range(number):
+            if numbers[j]<j:
+                break
+        answer.append(j-1)
+    for i in range(test_case):
+        print('Case #'+str(i)+': '+str(answer[i]))
+    
+    
+##chain reaction problem
+from itertools import permutations
+def fun(a,fun_factor,pointer):
+    answer=0
+    for i in range(len(a)):
+        s=a.pop(0)
+        while s!=0:
+            if fun_factor[s]!=0:
+                b+=fun_factor[s]
+                fun_factor[s]=0
+                s=pointer[s]
+            else:
+                break
+    return answer
+def get_max_fun(s):
+    s=s.split('\n')
+    test_case=s.pop(0)
+    test_case=int(test_case)
+    answer=[]
+    for i in range(test_case):
+        number=s.pop(0)
+        number=int(number)
+        line=s.pop(0)
+        line=line.split(' ')
+        fun_factor=line[:number]
+        fun_factor=[int(x) for x in fun_factor]
+        pointer=line[number:]
+        pointer=[int(x) for x in pointer]
+        if number!=len(fun_factor) or number!=len(pointer):
+            return False
+        aa=set(pointer)
+        bb=[i for i in range(1,number+1)]
+        initiator=list(set(bb)-aa)
+        perm=list(permutations(initiator,len(initiator)))
+        max=0
+        for j in range(len(perm)):
+            bb=fun(perm[j],number,line)
+            if bb>max:
+                max=bb
+        answer.append(max)
+    for i in range(test_case):
+        print('Case #'+int(i)+': '+str(answer[i]))
+    
+        
