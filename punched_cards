@@ -1,0 +1,33 @@
+##punched cards problem
+def punched(s):
+     s=s.split('\n')
+     test_case=s.pop(0)
+     test_case=int(test_case)
+     answer=[]
+     for i in range(test_case):
+         ss=s.pop(0)
+         ss=ss.split(' ')
+         row,column=int(ss[0]),int(ss[1])
+         a=[]
+         c=[]
+         for i in range(column+1):
+             c.append('+')
+         c[0]='.'
+         a.append(c)
+         for i in range(row):
+             b=[]
+             for j in range(column+1):
+                 b.append('|')
+             if i==0:
+                 b[0]='.'
+             b='.'.join(b)
+             a.append(b)
+             b=[]
+             for j in range(column+1):
+                 b.append('+')
+             b='-'.join(b)
+             a.append(b)
+         a='\n'.join(a)
+         answer.append(a)
+    for i in range(test_case):
+        print('Case #'+str(i)+':'+answer[i])
